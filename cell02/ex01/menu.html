@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNCF Sandwich Builder</title>
+    <link rel="stylesheet" href="menu.css">
+</head>
+<body>
+
+<header>SNCF Sandwich Builder</header>
+
+<div class="builder">
+    <h2>Custom Your Sandwich</h2>
+
+    <label for="bread">Choose Bread:</label>
+    <select id="bread">
+        <option value="Baguette">Baguette</option>
+        <option value="Whole Wheat">Whole Wheat</option>
+        <option value="Ciabatta">Ciabatta</option>
+    </select>
+
+    <label for="filling">Choose Filling:</label>
+    <select id="filling">
+        <option value="Ham & Cheese">Ham & Cheese</option>
+        <option value="Turkey & Brie">Turkey & Brie</option>
+        <option value="Veggie Delight">Veggie Delight</option>
+        <option value="Salmon & Cream Cheese">Salmon & Cream Cheese</option>
+    </select>
+
+    <label for="sauce">Choose Sauce:</label>
+    <select id="sauce">
+        <option value="Mayonnaise">Mayonnaise</option>
+        <option value="Mustard">Mustard</option>
+        <option value="Pesto">Pesto</option>
+        <option value="No Sauce">No Sauce</option>
+    </select>
+
+    <button id="buildBtn">Your Sandwich</button>
+
+    <div class="result" id="result">
+    </div>
+</div>
+
+
+<script>
+    const buildBtn = document.getElementById('buildBtn');
+    const result = document.getElementById('result');
+
+    buildBtn.addEventListener('click', () => {
+        const bread = document.getElementById('bread').value;
+        const filling = document.getElementById('filling').value;
+        const sauce = document.getElementById('sauce').value;
+
+        result.innerHTML = `<h3>Your Sandwich:</h3>
+                            <p><strong>Bread:</strong> ${bread}</p>
+                            <p><strong>Filling:</strong> ${filling}</p>
+                            <p><strong>Sauce:</strong> ${sauce}</p>`;
+    });
+</script>
+
+</body>
+</html>

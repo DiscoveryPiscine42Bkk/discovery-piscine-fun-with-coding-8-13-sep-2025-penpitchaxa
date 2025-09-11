@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculator</title>
+  <style>
+    body { min-height: 100vh; display: grid; place-items: center; background: #f7f7f7; }
+    .calc { background: white; padding: 1.25rem; border-radius: 12px; }
+    .row { display: flex; gap: .5rem; }
+    input[type="text"], select, input[type="submit"] { font-size: 1rem; padding: .6rem .8rem; border: 1px solid #ddd; border-radius: 8px; }
+    input[type="submit"] { cursor: pointer; border-color: #999; }
+    .hint { margin-top: .5rem; color: #666; font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <form id="calc-form" class="calc" autocomplete="off">
+    <div class="row">
+      <label for="left" class="sr-only">Left operand</label>
+      <input id="left" name="left" type="text" inputmode="numeric" pattern="\d+" title="Enter a positive integer (0 or greater)" placeholder="Left (e.g. 12)" />
+
+      <label for="op" class="sr-only">Operator</label>
+      <select id="op" name="op">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="%">%</option>
+      </select>
+
+      <label for="right" class="sr-only">Right operand</label>
+      <input id="right" name="right" type="text" inputmode="numeric" pattern="\d+" title="Enter a positive integer (0 or greater)" placeholder="Right (e.g. 3)" />
+
+      <input type="submit" value="Try me!" />
+    </div>
+    <div class="hint">Only positive integers (≥ 0). Result shows in alert and console.</div>
+  </form>
+
+  <script>
+    (function () {
+      const $ = (sel) => document.querySelector(sel);
+      const form = $("#calc-form");
+      const left = $("#left");
+      const right = $("#right");
+      const op = $("#op");
+
+      function isNonNegativeInteger(str) {
+        return /^\d+$/.test(str);
+      }
+
+      function showError(msg) {
+        alert(msg);
+        console.log(msg);
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const aStr = left.value.trim();
+        const bStr = right.value.trim();
+
+
+        if (!isNonNegativeInteger(aStr) || !isNonNegativeInteger(bStr)) {
+          return showError('Error :(');
+        }
+
+        const a = parseInt(aStr, 10);
+        const b = parseInt(bStr, 10);
+        const operator = op.value;
+
+        if ((operator === '/' || operator === '%') && b === 0) {
+          return showError("It's over 9000!");
+        }
+
+        let result;
+        switch (operator) {
+          case '+': result = a + b; break;
+          case '-': result = a - b; break;
+          case '*': result = a * b; break;
+          case '/': result = a / b; break; 
+          case '%': result = a % b; break;
+          default: return showError('Error :(');
+        }
+
+        alert(String(result));
+        console.log(result);
+      });
+
+      setInterval(function () {
+        alert('Please, use me...');
+      }, 30000);
+    })();
+  </script>
+</body>
+</html>
