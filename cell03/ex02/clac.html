@@ -17,7 +17,7 @@
   <form id="calc-form" class="calc" autocomplete="off">
     <div class="row">
       <label for="left" class="sr-only">Left operand</label>
-      <input id="left" name="left" type="text" inputmode="numeric" pattern="\d+" title="Enter a positive integer (0 or greater)" placeholder="Left (e.g. 12)" />
+      <input id="left" name="left" type="text" inputmode="numeric" title="Enter a positive integer (0 or greater)" placeholder="Left (e.g. 12)" />
 
       <label for="op" class="sr-only">Operator</label>
       <select id="op" name="op">
@@ -29,7 +29,7 @@
       </select>
 
       <label for="right" class="sr-only">Right operand</label>
-      <input id="right" name="right" type="text" inputmode="numeric" pattern="\d+" title="Enter a positive integer (0 or greater)" placeholder="Right (e.g. 3)" />
+      <input id="right" name="right" type="text" inputmode="numeric"  title="Enter a positive integer (0 or greater)" placeholder="Right (e.g. 3)" />
 
       <input type="submit" value="Try me!" />
     </div>
@@ -44,9 +44,6 @@
       const right = $("#right");
       const op = $("#op");
 
-      function isNonNegativeInteger(str) {
-        return /^\d+$/.test(str);
-      }
 
       function showError(msg) {
         alert(msg);
@@ -58,14 +55,14 @@
         const aStr = left.value.trim();
         const bStr = right.value.trim();
 
-
-        if (!isNonNegativeInteger(aStr) || !isNonNegativeInteger(bStr)) {
-          return showError('Error :(');
-        }
-
         const a = parseInt(aStr, 10);
         const b = parseInt(bStr, 10);
         const operator = op.value;
+
+        
+        if (a < 0 || b < 0) {
+          return showError("Error :(");
+        }
 
         if ((operator === '/' || operator === '%') && b === 0) {
           return showError("It's over 9000!");
