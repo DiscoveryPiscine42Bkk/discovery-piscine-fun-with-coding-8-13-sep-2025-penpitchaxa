@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Balloon</title>
+  <style>
+    :root {
+      --min-size: 200; 
+      --max-size: 420; 
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      background: #f7f7f7;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    }
+
+
+    #balloon {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: red;          
+      cursor: pointer;
+      box-shadow: 0 12px 24px rgba(0,0,0,.12), inset 0 -8px 16px rgba(255,255,255,.35);
+      transition: width .12s ease, height .12s ease, background-color .12s ease, transform .12s ease;
+      user-select: none;
+    }
+
+    #balloon:active {
+      transform: scale(0.99);
+    }
+
+    @keyframes pop {
+      0%   { transform: scale(1); opacity: 1; }
+      50%  { transform: scale(1.15); opacity: .7; }
+      100% { transform: scale(0.85); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="balloon" aria-label="Balloon, click to inflate, move mouse out to deflate"></div>
+
+  <script>
+    (function () {
+      const balloon = document.getElementById('balloon');
+
+      const MIN = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--min-size'), 10);
+      const MAX = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--max-size'), 10);
+
+      const COLORS = ['red', 'green', 'blue']; 
+      let colorIndex = 0;                      
+      let size = MIN;                          
+
+      function applyState() {
+        balloon.style.width = size + 'px';
+        balloon.style.height = size + 'px';
+        balloon.style.backgroundColor = COLORS[colorIndex];
+      }
+
+      function resetBalloon() {
+        balloon.style.animation = 'pop 180ms ease-out';
+        setTimeout(() => {
+          balloon.style.animation = '';
+          size = MIN;
+          colorIndex = 0; 
+          applyState();
+        }, 180);
+      }
+
+      
+      balloon.addEventListener('click', () => {
+        size += 10;
+        colorIndex = (colorIndex + 1) % COLORS.length;
+
+        if (size > MAX) {
+          resetBalloon();
+          return;
+        }
+        applyState();
+      });
+
+      balloon.addEventListener('mouseleave', () => {
+        size = Math.max(MIN, size - 5);
+        colorIndex = (colorIndex - 1 + COLORS.length) % COLORS.length;
+        applyState();
+      });
+
+      applyState();
+    })();
+  </script>
+</body>
+</html>
