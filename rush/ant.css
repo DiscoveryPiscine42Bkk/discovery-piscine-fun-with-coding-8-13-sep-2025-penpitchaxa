@@ -1,0 +1,217 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  scroll-behavior: smooth;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  padding: 15px;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #00c6ff;
+}
+
+/* Sections */
+section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  scroll-margin-top: 80px; /* สำหรับ navbar fixed */
+}
+
+/* Parallax background */
+.parallax {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+#first {
+  background-image: url("https://i.pinimg.com/736x/85/46/82/8546822587e37180f731f254cf10d33d.jpg");
+}
+#second {
+  background-image: url("https://i.pinimg.com/736x/28/d4/af/28d4afd393557d87f211a9a0e3dc88b0.jpg");
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+}
+
+/* Content block (middle) */
+.content-block {
+  background: #2e3d2e;
+  color: #fff;
+}
+
+/* Glassmorphism box */
+.glass-box {
+  position: relative;
+  max-width: 600px;
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.glass-box-exp {
+  position: relative;
+  width: 70%;
+  padding: 60px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.glass-box-exp p {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.glass-box-exp h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+
+/* H4 มี border-top ยกเว้นอันแรก */
+.glass-box-exp h4:not(:first-child) {
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
+    padding-top: 10px;
+    text-align: center;
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+
+.glass-box h1, .glass-box h2 {
+  margin-bottom: 15px;
+}
+
+/* Glass box for personal info */
+.personal-info {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  max-width: 1000px;
+  padding: 30px;
+  flex-wrap: wrap; 
+  text-align: left;
+}
+
+/* Left image */
+.profile-img img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+/* Right text */
+.info-text {
+  flex: 1; /* ให้ข้อความขยายเต็มที่ที่เหลือ */
+  color: #fff;
+}
+
+.contact-box {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  text-align: left;
+}
+
+.contact-box h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #fff;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+/* Icon size */
+.contact-item .icon {
+  width: 30px;
+  height: 30px;
+}
+
+/* Contact links */
+.contact-item a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.contact-item a:hover {
+  color: #00c6ff;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .contact-item {
+    flex-direction: column; /* ซ้อนแนวตั้ง */
+    gap: 10px;
+  }
+  .contact-item .icon {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+/* Responsive: ถ้าหน้าจอเล็กกว่า 768px ให้ซ้อนคอลัมน์ */
+@media (max-width: 768px) {
+  .personal-info {
+    flex-direction: column;
+    text-align: center;
+  }
+  .profile-img img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 15px;
+  }
+}
