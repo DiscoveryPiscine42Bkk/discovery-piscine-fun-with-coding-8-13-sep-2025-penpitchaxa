@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mini To-Do (jQuery)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; }
+    #actions { margin-bottom: 12px; }
+    button { padding: 8px 12px; cursor: pointer; }
+    #ft_list { display: flex; flex-direction: column; gap: 8px; }
+    .todo {
+      padding: 10px 12px;
+      border: 1px solid #ccc; border-radius: 8px;
+      background: #f7f7f7;
+      user-select: none;
+    }
+    .hint { color: #666; font-size: 12px; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <div id="actions">
+    <button id="newBtn" type="button">New</button>
+  </div>
+
+  <div id="ft_list" aria-live="polite"></div>
+  <div class="hint">Click a TO DO to remove it.</div>
+
+  <!-- jQuery (CDN) -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+          crossorigin="anonymous"></script>
+  <script src="todo.js"></script>
+</body>
+</html>
